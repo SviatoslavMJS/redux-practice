@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react"
+import './App.module.css';
+import { connect } from "react-redux"
+import { addAC, subtractAC } from "./redux/actionCreators";
+import Counter2 from "./components/Counter2/Counter2";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+
+  render() {
+    console.log(this.props)
+    return (
+      <div className="App">
+        <h1>{ this.props.counter }</h1>
+        <hr />
+        <div>
+          <button onClick={() => this.props.add()}>Increment</button>
+          <button onClick={() => this.props.subtract()}>Decrement</button>
+        </div>
+
+        <hr/>
+
+        <Counter2 />
+      </div>
+    )
+  }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    counter: state.count1.counter
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+     add: () => dispatch(addAC()),
+     subtract: () => dispatch(subtractAC())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
