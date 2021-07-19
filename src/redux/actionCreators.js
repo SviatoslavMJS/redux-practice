@@ -29,3 +29,12 @@ export function subNumberAC(payload) {
     }
 }
 
+export function asyncAddNumberAC(number) {
+    return function (dispatch) {
+        setTimeout(() => {
+            dispatch(addNumberAC(number))
+        }, 3000)
+    }
+
+}
+

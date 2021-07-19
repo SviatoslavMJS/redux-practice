@@ -4,7 +4,6 @@ const initialState = {
     counter: 30
 }
 
-
 export function countReducer2(state = initialState, action) {
     switch (action.type) {
         case ADD_NUMBER:

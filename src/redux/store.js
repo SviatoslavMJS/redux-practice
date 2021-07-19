@@ -1,5 +1,6 @@
-import {applyMiddleware, createStore} from "redux"
+import { applyMiddleware, createStore } from "redux"
 import { rootReducer } from "./rootReducer"
+import  reduxThunk from "redux-thunk"
 
 const loggerMiddleware = store => next => action => {
     let result = next(action)
@@ -7,7 +8,11 @@ const loggerMiddleware = store => next => action => {
     return result
 }
 
-export const store = createStore(rootReducer, applyMiddleware(loggerMiddleware))
+export const store = createStore(rootReducer, applyMiddleware(
+    loggerMiddleware,
+    reduxThunk
+  )
+)
 
 
 

@@ -7,7 +7,7 @@ import Counter2 from "./components/Counter2/Counter2";
 class App extends Component {
 
   render() {
-    console.log(this.props)
+    
     return (
       <div className="App">
         <h1>{ this.props.counter }</h1>
