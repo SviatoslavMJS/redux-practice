@@ -1,7 +1,13 @@
-import {createStore} from "redux"
+import {applyMiddleware, createStore} from "redux"
 import { rootReducer } from "./rootReducer"
 
-export const store = createStore(rootReducer)
+const loggerMiddleware = store => next => action => {
+    let result = next(action)
+    console.log("Middleware", store.getState())
+    return result
+}
+
+export const store = createStore(rootReducer, applyMiddleware(loggerMiddleware))
 
 
 
